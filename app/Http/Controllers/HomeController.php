@@ -26,6 +26,11 @@ class HomeController extends Controller
         $user = auth()->user();
         // Ambil hanya data hinterland sesuai region user yang login
         $tabs = \App\Models\HinterlandTab::where('region', $user->region)->get();
+
+        if ($user->region == 'root') {
+            return view('data-hinterland/hinterland', compact('tabs', 'user'));
+        }
+
         return view('home', compact('tabs', 'user'));
     }
 }

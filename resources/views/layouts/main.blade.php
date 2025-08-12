@@ -7,6 +7,7 @@
     <title>Simpul Laut</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" />
@@ -240,7 +241,9 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     @push('scripts')
+
         <script src="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.js"></script>
+
         <script>
             // Menangani upload gambar ke server saat gambar disisipkan di Trix
             document.addEventListener('trix-attachment-add', function(event) {
@@ -270,6 +273,29 @@
                 }
             });
         </script>
+
+        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+    <script>
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        ClassicEditor.create(document.querySelector('#editor'), {
+            toolbar: [
+                'heading', 'bold', 'italic', 'link',
+                'bulletedList', 'numberedList', 'blockQuote',
+                'insertTable', 'uploadImage', 'undo', 'redo'
+            ],
+            table: {
+                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            },
+            simpleUpload: {
+                uploadUrl: "{{ route('editor.upload') }}", // route upload image
+                headers: {
+                    'X-CSRF-TOKEN': token
+                }
+            }
+        }).catch(err => console.error(err));
+    </script> --}}
+
 
     </body>
 

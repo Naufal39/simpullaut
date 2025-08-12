@@ -55,7 +55,28 @@
         }
 
         .hinterland-container-wide {
-            max-width: 1200px;
+            max-width: 100%;
+        }
+
+        .trix-editor {
+            text-align: justify;
+            font-family: poppins, sans-serif;
+            font-size: 1rem;
+        }
+
+        .trix-editor img {
+            max-width: 90%;
+            /* gambar max 80% dari container */
+            height: auto;
+            display: block;
+            /* agar bisa diberi margin auto */
+            margin: 1.5rem auto;
+        }
+
+        .trix-editor img~* {
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
         }
     </style>
     <main class="main">
@@ -138,8 +159,8 @@
                                         @endphp
                                         <h5 class="fw-bold text-primary">Analisa Data</h5>
                                         @if ($tabAnalisa)
-                                            <div>{!! $tabAnalisa->content !!}</div>
-                                            @if ($user && $user->region == $id && $user->id == $tabAnalisa->user_id)
+                                            <div class="trix-editor">{!! $tabAnalisa->content !!}</div>
+                                            @if (($user && $user->region == $id && $user->id == $tabAnalisa->user_id) || $user->region == 'root')
                                                 <a href="{{ route('hinterland-tab.edit', $tabAnalisa->id) }}"
                                                     class="btn btn-sm btn-warning mt-2">Edit</a>
                                             @endif
@@ -166,8 +187,8 @@
                                         @endphp
                                         <h5 class="fw-bold text-primary">Data KUKM dan Perindustrian</h5>
                                         @if ($tabKukm)
-                                            <div>{!! $tabKukm->content !!}</div>
-                                            @if ($user && $user->region == $id && $user->id == $tabKukm->user_id)
+                                            <div class="trix-editor">{!! $tabKukm->content !!}</div>
+                                            @if (($user && $user->region == $id && $user->id == $tabKukm->user_id) || $user->region == 'root')
                                                 <a href="{{ route('hinterland-tab.edit', $tabKukm->id) }}"
                                                     class="btn btn-sm btn-warning mt-2">Edit</a>
                                             @endif
@@ -194,8 +215,8 @@
                                         @endphp
                                         <h5 class="fw-bold text-primary">Data Perdagangan</h5>
                                         @if ($tabPerdagangan)
-                                            <div>{!! $tabPerdagangan->content !!}</div>
-                                            @if ($user && $user->region == $id && $user->id == $tabPerdagangan->user_id)
+                                            <div class="trix-editor">{!! $tabPerdagangan->content !!}</div>
+                                            @if (($user && $user->region == $id && $user->id == $tabPerdagangan->user_id) || $user->region == 'root')
                                                 <a href="{{ route('hinterland-tab.edit', $tabPerdagangan->id) }}"
                                                     class="btn btn-sm btn-warning mt-2">Edit</a>
                                             @endif
@@ -222,8 +243,8 @@
                                         @endphp
                                         <h5 class="fw-bold text-primary">Data Pariwisata</h5>
                                         @if ($tabPariwisata)
-                                            <div>{!! $tabPariwisata->content !!}</div>
-                                            @if ($user && $user->region == $id && $user->id == $tabPariwisata->user_id)
+                                            <div class="trix-editor">{!! $tabPariwisata->content !!}</div>
+                                            @if (($user && $user->region == $id && $user->id == $tabPariwisata->user_id) || $user->region == 'root')
                                                 <a href="{{ route('hinterland-tab.edit', $tabPariwisata->id) }}"
                                                     class="btn btn-sm btn-warning mt-2">Edit</a>
                                             @endif
@@ -250,8 +271,8 @@
                                         @endphp
                                         <h5 class="fw-bold text-primary">Data Perikanan dan Kelautan</h5>
                                         @if ($tabPerikanan)
-                                            <div>{!! $tabPerikanan->content !!}</div>
-                                            @if ($user && $user->region == $id && $user->id == $tabPerikanan->user_id)
+                                            <div class="trix-editor">{!! $tabPerikanan->content !!}</div>
+                                            @if (($user && $user->region == $id && $user->id == $tabPerikanan->user_id) || $user->region == 'root')
                                                 <a href="{{ route('hinterland-tab.edit', $tabPerikanan->id) }}"
                                                     class="btn btn-sm btn-warning mt-2">Edit</a>
                                             @endif

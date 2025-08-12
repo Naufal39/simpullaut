@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HinterlandTab;
 use Illuminate\Support\Facades\Auth;
+use Mews\Purifier\Facades\Purifier;
 
 class HinterlandTabController extends Controller
 {
@@ -16,6 +17,7 @@ class HinterlandTabController extends Controller
         ]);
 
         $region = auth()->user()->region;
+        // $content = Purifier::clean($request->input('content'), 'ckeditor_full');
 
         HinterlandTab::updateOrCreate(
             [
@@ -38,11 +40,12 @@ class HinterlandTabController extends Controller
     }
     public function update(Request $request, $id)
     {
+        // $content = Purifier::clean($request->input('content'), 'ckeditor_full');
         $tab = HinterlandTab::findOrFail($id);
         $this->authorize('update', $tab);
         $tab->update(['content' => $request->content]);
 
-        if (auth()->user()->region !== $request->region) {
+        if (auth()->user()->region !== $request->region && auth()->user()->region !== 'root') {
             abort(403, 'Anda tidak berhak menginput data untuk daerah ini.');
         }
 
@@ -55,4 +58,22 @@ class HinterlandTabController extends Controller
         $tab->delete();
         return back()->with('success', 'Data berhasil dihapus');
     }
+    // public function uploadImage(Request $request)
+    // {
+    //     $request->validate(['upload' => ['required', 'image', 'max:5120']]);
+
+    //     $path = $request->file('upload')->store('uploads', 'public');
+
+    //     // Format A (sederhana, sudah didukung CKEditor 5)
+    //     return response()->json([
+    //         'url' => asset('storage/' . $path),
+    //     ]);
+
+    //     // --- Atau --- //
+
+    //     // Format B (dengan 'urls.default')
+    //     // return response()->json([
+    //     //   'urls' => ['default' => asset('storage/'.$path)]
+    //     // ]);
+    // }
 }

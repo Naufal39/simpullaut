@@ -29,7 +29,6 @@ Route::get('traffic-marine', function () {
     return view('informasi/traffic-marine');
 });
 
-
 Route::post('upload-image', [PostController::class, 'uploadImage'])->name('upload-image');
 Route::resource('posts', PostController::class);
 
@@ -51,3 +50,5 @@ Route::get('hinterland-tabs', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('hinterland-tab', App\Http\Controllers\HinterlandTabController::class)->only(['edit', 'update', 'store', 'destroy']);
+
+// Route::post('/upload-image', [App\Http\Controllers\HinterlandTabController::class, 'uploadImage'])->name('editor.upload');

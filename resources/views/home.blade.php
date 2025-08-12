@@ -106,6 +106,7 @@
                             <label class="form-label">Konten</label>
                             <input id="tab-content" type="hidden" name="content">
                             <trix-editor input="tab-content"></trix-editor>
+                            {{-- <textarea id="editor" input="tab-content" name="content"></textarea> --}}
                         </div>
                     </div>
                     <div class="modal-footer">

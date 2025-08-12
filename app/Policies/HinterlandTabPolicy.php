@@ -9,10 +9,10 @@ class HinterlandTabPolicy
 {
     public function update(User $user, HinterlandTab $tab)
     {
-        return $user->id === $tab->user_id && $user->region === $tab->region;
+        return $user->id === $tab->user_id && $user->region === $tab->region || $user->region === 'root';
     }
     public function delete(User $user, HinterlandTab $tab)
     {
-        return $user->id === $tab->user_id && $user->region === $tab->region;
+        return $user->id === $tab->user_id && $user->region === $tab->region || $user->region === 'root';
     }
 }
